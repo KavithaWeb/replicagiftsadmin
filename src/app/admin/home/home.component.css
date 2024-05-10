@@ -1,0 +1,29 @@
+p {
+  font-size: 20px;
+  padding: 5px;
+}
+.control-group {
+  top: -10px;
+  display: flex;
+  left: 20px;
+  gap: 10px;
+}
+
+.light-btn {
+  border-radius: 20px;
+  border: 0ch;
+  background-color: #fff;
+  padding: 5px 15px;
+}
+
+.light-btn:hover {
+  background-color: rgb(253, 212, 212);
+}
+
+.active-btn {
+  background-color: rgb(253, 212, 212);
+}
+
+.btn:active {
+  outline: none !important;
+}

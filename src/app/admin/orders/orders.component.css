@@ -1,0 +1,26 @@
+.view {
+  color: rgb(255, 136, 0);
+  cursor: pointer;
+}
+
+/* .content{
+overflow: auto;
+
+} */
+
+button {
+  border: none;
+}
+
+.card {
+  padding: 20px;
+}
+
+.btn-arow {
+  border-radius: 50%;
+  width: 30px;
+}
+
+.btn-arow:hover i {
+  color: grey;
+}

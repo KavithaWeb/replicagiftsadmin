@@ -1,0 +1,84 @@
+<div class="pagetitle">
+  <h1>Gifts</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Gifts</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="content">
+  <h4>Add Gifts</h4>
+  <div class="content-data">
+    <div class="content-form" id="addProductForm">
+      <div class="w-100 mt-4">
+        <div class="form-outline">
+          <label class="form-label">Enter gift name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            [(ngModel)]="data.name"
+          />
+        </div>
+      </div>
+      <div class="w-100 mt-4">
+        <div class="form-outline">
+          <label class="form-label">Enter Avaiable Quantity</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Quantity"
+            min="1"
+            [(ngModel)]="data.quantity"
+          />
+        </div>
+      </div>
+      <div class="w-100 mt-4">
+        <div class="form-outline">
+          <label class="form-label">Enter Price</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="price"
+            min="1"
+            [(ngModel)]="data.price"
+          />
+        </div>
+      </div>
+      <br />
+      <strong class="w-100">Upload Thumbnail</strong>
+      <br />
+      <img
+        *ngIf="showUpdate"
+        width="200"
+        height="200"
+        [src]="data.thumbnail"
+        alt=""
+        srcset=""
+      />
+
+      <div class="my-4">
+        <input
+          type="file"
+          class="form-control input-file"
+          (change)="addThub($event)"
+        />
+      </div>
+
+      <button *ngIf="!showUpdate" class="btn my-4" (click)="submit()">
+        Submit
+      </button>
+      <ng-container *ngIf="showUpdate">
+        <button class="btn my-4" (click)="update()">Update</button>
+        <button class="btn my-1" (click)="close()">Close</button>
+      </ng-container>
+      <app-gift-view-table
+        [gifts]="gifts"
+        (edit)="edit($event)"
+        (_delete)="delete($event)"
+      ></app-gift-view-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="pagetitle">
+  <h1>Contacts</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Contacts</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="content">
+  <div class="mb-4">
+    <div class="card">
+      <div class="fs-6 d-flex justify-content-between">
+        <div>
+          {{ (pagenation.page - 1) * pagenation.limit }} -
+          {{
+            pagenation.page * pagenation.limit > totalOrders
+              ? totalOrders
+              : pagenation.page * pagenation.limit
+          }}
+          of {{ totalOrders }}
+        </div>
+        <div>
+          <strong>Status</strong>
+          <select
+            class="mx-3 border-0"
+            name="d"
+            id=""
+            [(ngModel)]="pagenation.status"
+            (change)="pagenation.page = 1; get()"
+          >
+            <option *ngFor="let status of statusOptions" [value]="status">
+              {{ status | uppercase }}
+            </option>
+          </select>
+        </div>
+        <div class="d-flex gap-3">
+          <button class="btn-arow" (click)="prev()">
+            <i class="fa-solid fa-angle-left"></i>
+          </button>
+          <button class="btn-arow" (click)="next()">
+            <i class="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-data">
+    <div class="content-form" id="addProductForm">
+      <table class="table order__table">
+        <thead>
+          <th style="width: 4rem">Sl.NO</th>
+          <th style="width: 9rem">Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <!-- <th>Phone</th> -->
+          <th>Subject</th>
+          <th style="width: 6rem">Message</th>
+          <th style="width: 6rem">Remove</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let con of contactViewed; let i = index">
+            <td>{{ i + 1 + (pagenation.page - 1) * pagenation.limit }}</td>
+            <td>{{ con.chreatedAt | date }}</td>
+            <td>{{ con.name }}</td>
+            <td>
+              <a href="mailto:{{ con.email }}">{{ con.email }}</a>
+            </td>
+            <!-- <td>{{ con.phone }}</td> -->
+            <td>{{ con.subject }}</td>
+            <td>
+              <button (click)="view(con._id)" class="btn1s active-link view">
+                Read
+              </button>
+            </td>
+            <td>
+              <i
+                (click)="deleteProduct(con._id)"
+                class="fa fa-trash text-danger"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

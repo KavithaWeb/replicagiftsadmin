@@ -1,0 +1,62 @@
+/* .badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: rgb(255, 128, 0);
+  color: white;
+  font-weight: bold;
+  border-radius: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+main .content {
+  width: 100%;
+}
+
+mn {
+  overflow-y: sroll;
+} */
+
+
+.nav {
+  height: 25px;
+  justify-content: space-between;
+  column-gap: 1rem;
+}
+
+.nav__logo-img {
+  width: 200px;
+  height: 120px;
+}
+
+.nav__logo {
+  font-size: 26px;
+  font-weight: bolder;
+  display: flex;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav__logo .onetext {
+  color: rgb(255, 89, 0);
+}
+
+.nav__logo .twotext {
+  color: rgb(93, 93, 93);
+}
+
+.nav__menu-logo {
+  display: flex;
+}
+
+.nav__menu-logo .onetext {
+  color: rgb(255, 89, 0);
+}
+
+.nav__menu-logo .twotext {
+  color: rgb(93, 93, 93);
+}
+

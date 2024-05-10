@@ -1,0 +1,90 @@
+<div class="pagetitle">
+  <h1>{{ flag ? "Print Type" : "category" }}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">{{ flag ? "Print Type" : "category" }}</li>
+    </ol>
+  </nav>
+</div>
+
+
+<div class="content">
+  <!-- <h4>{{ flag ? "Print Type" : "category" }}</h4> -->
+  <div class="content-data">
+    <div class="content-form" id="addProductForm">
+      <strong>{{ flag ? "Print Type" : "Category" }}</strong>
+      <div class="w-100 mt-4">
+        <div class="form-outline">
+          <label class="form-label"
+            >Enter {{ flag ? "Print Type" : "category" }} name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="{{ flag ? 'Print Type' : 'category' }}"
+            [(ngModel)]="data.categoryName"
+          />
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <label>Frames ?</label>
+        <select class="form-control" id="userImage" [(ngModel)]="data.frame">
+          <option
+            *ngFor="
+              let print of [
+                { is: true, value: 'Yes' },
+                { is: false, value: 'No' }
+              ]
+            "
+            [value]="print.is"
+          >
+            {{ print.value }}
+          </option>
+        </select>
+      </div>
+      <br />
+      <strong>Upload Thumbnail</strong>
+      <div class="my-4">
+        <input
+          type="file"
+          class="form-control input-file"
+          id="image"
+          (change)="addThub($event)"
+        />
+      </div>
+      <button *ngIf="!showUpdate" class="btn my-4" (click)="submit()">
+        Submit
+      </button>
+      <ng-container *ngIf="showUpdate">
+        <button class="btn my-4" (click)="update()">
+          Update
+        </button>
+        <button class="btn my-1" (click)="close()">
+          Close
+        </button>
+      </ng-container>
+      <table class="table order__table">
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th style="width: 10rem">Action</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cate of categories">
+            <td>{{ cate._id }}</td>
+            <td>{{ cate.categoryName }}</td>
+            <td>
+              <a (click)="edit(cate)"
+                ><i class="bi bi-pencil-square px-4 text-success pointer"></i
+              ></a>
+              <a (click)="delete(cate._id)"
+                ><i class="bi bi-trash px-4 text-danger pointer"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

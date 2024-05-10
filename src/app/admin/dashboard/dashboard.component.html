@@ -1,0 +1,28 @@
+<div class="pagetitle">
+  <h1>Order Status</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Order Status</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="content">
+  <div class="content-data">
+    <app-order-view-table [orders]="orders"></app-order-view-table>
+    <br />
+    <br />
+    <app-order-view-table
+      [orders]="reorders"
+      [title]="'Viewed Order'"
+    ></app-order-view-table>
+
+    <br />
+    <br />
+    <app-order-view-table
+      [orders]="delivered"
+      [title]="'Successful Order'"
+    ></app-order-view-table>
+  </div>
+</div>

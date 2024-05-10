@@ -1,0 +1,168 @@
+<div class="pagetitle">
+  <h1>Order-View</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Order-View</li>
+    </ol>
+  </nav>
+</div>
+
+
+<button (click)="goBack()" class="back-btn btn">
+  <i class="fa fa-arrow-left" style="padding-right: 6px;"></i> Back
+</button>
+<div class="container">
+  <h4>Product:</h4>
+  <table class="order__table">
+    <thead>
+      <th>Thumbnail</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <img
+            *ngIf="!data.userImageModel"
+            src="{{ data.product.image }}"
+            alt=""
+            srcset=""
+          />
+
+          <img
+            *ngIf="data.userImageModel"
+            src="{{ data.userImageModel }}"
+            alt=""
+            srcset=""
+          />
+        </td>
+        <td>{{ data.product.title }}</td>
+        <td>{{ data.quantity }}</td>
+        <td>{{ data.quantity * data.product.amount }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <p>User Image: {{ data.userImage }}</p> -->
+
+  <h4 *ngIf="data.gifts.length > 0">Gift:</h4>
+
+  <table *ngIf="data.gifts.length > 0" class="order__table">
+    <thead>
+      <th>Thumbnail</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gift of data.gifts">
+        <td><img src="{{ gift.gift.thumbnail }}" alt="" srcset="" /></td>
+        <td>{{ gift.gift.name }}</td>
+        <td>{{ gift.quantity }}</td>
+        <td>{{ gift.gift.price * gift.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>User Details</h4>
+
+  <p><strong>Name :</strong>{{ data.deliveryAddress.name }}</p>
+
+  <p><strong>Print Type</strong>: {{ data.printType }}</p>
+  <br />
+
+  <button
+    *ngIf="data.userImage"
+    (click)="downloadImage(data.userImage, 'image.png')"
+    class="btn"
+  >
+    Download Image
+  </button>
+
+  <button
+    *ngIf="data.userImageModel"
+    (click)="downloadImage(data.userImageModel, 'userImageModel.png')"
+    class="btn my-2"
+  >
+    Download Image Model
+  </button>
+  <br />
+  <br />
+  <strong>Delivery Address:</strong>
+  <br />
+
+  <table>
+    <tr>
+      <th>name</th>
+      <td>{{ data.deliveryAddress.name }}</td>
+    </tr>
+
+    <tr>
+      <th>email</th>
+      <td>{{ data.deliveryAddress.email }}</td>
+    </tr>
+
+    <tr>
+      <th>address</th>
+      <td>{{ data.deliveryAddress.address }}</td>
+    </tr>
+
+    <tr>
+      <th>city</th>
+      <td>{{ data.deliveryAddress.city }}</td>
+    </tr>
+
+    <tr>
+      <th>country</th>
+      <td>{{ data.deliveryAddress.country }}</td>
+    </tr>
+
+    <tr>
+      <th>state</th>
+      <td>{{ data.deliveryAddress.state }}</td>
+    </tr>
+
+    <tr>
+      <th>postcode</th>
+      <td>{{ data.deliveryAddress.postcode }}</td>
+    </tr>
+
+    <tr>
+      <th>phone</th>
+      <td>{{ data.deliveryAddress.phone }}</td>
+    </tr>
+
+  </table>
+
+
+
+  <h4>Delivery Status</h4>
+  <select
+    name=""
+    id=""
+    class="w-100"
+    [(ngModel)]="selection"
+    (change)="update(data._id, selection)"
+  >
+    <option value="Processing">Processing</option>
+    <option value="Out of Delivery">Out of Delivery</option>
+    <option value="Delivered">Delivered</option>
+  </select>
+  <br />
+  <br />
+  <h4>Update Tracking ID</h4>
+
+  <input
+    type="text"
+    class="form-control w-100"
+    placeholder="Enter tracking id"
+    [(ngModel)]="tracking_id"
+  />
+  <br />
+  <br />
+  <button class="btn" (click)="updateTrackId(data._id, tracking_id)">
+    Update Tracking ID
+  </button>
+</div>
